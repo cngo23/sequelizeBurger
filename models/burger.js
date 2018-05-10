@@ -1,23 +1,13 @@
-const orm = require("../config/orm.js");
-
-var burgers = {
-    all: function (tableOutput) {
-        orm.showAll("burgers", function (res) {
-            tableOutput(res);
-        })
+module.exports = function(sequelize, DataTypes) {
+    var burger = sequelize.define("burgers", {
+        text:{type: DataTypes.STRING,
+        validate:{
+            notNull: false,
+            len:[3,15]
+        },
     },
+    flag: DataTypes.BOOLEAN
+    })
 
-    create: function(newBurgerI, newBurgerO) {
-        orm.newBurger(newBurgerI, function (data) {
-            newBurgerO(data);
-        })
-    },
-
-    delete: function(deleteBurgerI, deleteBurgerO) {
-        orm.eatBurger(deleteBurgerI, function (data) {
-            deleteBurgerO(data);
-        })
-    }
+    return burger;
 }
-
-module.exports = burgers;

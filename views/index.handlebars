@@ -1,0 +1,73 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Welcome to Dusty's Burgers</h1>
+            <h2>Where we love BIG BUNS!</h2>
+            <img src="/public/assets/img/bigbuns.jpg"> {{!--http://image-cdn.neatoshop.com/styleimg/56970/none/lightturquoise/default/345914-19;1489362004i.jpg--}}
+        </div>
+
+    </div>
+
+
+
+    <div class="row">
+
+        <div class="col-md-6" id="burgerDisplay">
+            <div class="card mb-1 text-center">
+                <h4>Burgers Available</h4>
+                <div class="card-body p-1">
+                    <ul class="list-group">
+                        {{#each burgers}} {{#unless this.flag}}
+                        <div class="listItem p-2">
+                            <form class="devourForm" action="/burgers/delete/{{this.id}}" method="POST">
+                                <li class="list-group-item">
+                                    <span class="available">{{this.id}}. {{this.text}}</span>
+                                    <input type="hidden" name="delete" value="true">
+                                    <button class="btn btn-danger btn-sm float-right" type="submit">Devour it!</button>
+                                </li>
+                            </form>
+                        </div>
+                        {{/unless}} {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" id="devourDisplay">
+            <div class="card mb-1 text-center">
+                <h4>Devoured Burgers</h4>
+                <div class="card-body p-1">
+                    <ul class="list-group">
+                        {{#each burgers}} {{#if this.flag}}
+                        <li class="list-group-item devouredLi">
+                            <div class="devouredDiv">
+                                <span class="devoured">{{this.id}}. {{this.text}}</span>
+                            </div>
+                        </li>
+                        {{/if}} {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Submit your burger order here!</h2>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="add" action="/burgers/add" method="POST">
+                        <textarea name="burger_name" style="width:175px; height:30px;"></textarea>
+                        <button class="btn btn-success btn-md" type="submit">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
