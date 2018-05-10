@@ -2,8 +2,7 @@ module.exports = function(sequelize, DataTypes) {
     var burger = sequelize.define("burgers", {
         text:{type: DataTypes.STRING,
         validate:{
-            notNull: false,
-            len:[3,15]
+            len:[3,25]
         },
     },
     flag: DataTypes.BOOLEAN

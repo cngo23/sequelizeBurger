@@ -17,7 +17,7 @@ router.get("/burgers", function (req, res) {
 router.post("/burgers/add", function (req, res) {
     db.burgers.create({
         text: req.body.text,
-        complete: req.body.flag
+        flag: req.body.flag
     }).then(function (data) {
         res.redirect("/burgers")
     });

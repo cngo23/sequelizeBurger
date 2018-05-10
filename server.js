@@ -21,7 +21,8 @@ var PORT = 3553;
 
 var db = require("./models");
 
-db.sequelize.sync({force:true}).then(function() {
+// add force:true to drop database everytime you refresh
+db.sequelize.sync({}).then(function() {
   app.listen(process.env.PORT|| PORT, function () {
     // Log (server-side) when our server has started
     console.log("Server listening on: http://localhost:" + PORT);
